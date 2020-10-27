@@ -1,13 +1,24 @@
-import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
+import { Ionicons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import * as React from "react";
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import Colors from "../constants/Colors";
+import useColorScheme from "../hooks/useColorScheme";
+import TabOneScreen from "../screens/ExploreScreen";
+import TabTwoScreen from "../screens/DonateScreen";
+import TabThreeScreen from "../screens/ProfileScreen";
+
+import {
+  BottomTabParamList,
+  TabOneParamList,
+  TabThreeParamList,
+  TabTwoParamList,
+} from "../types";
+
+import { EvilIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,20 +27,37 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName="Explore"
+      tabBarOptions={{
+        activeTintColor: Colors[colorScheme].tint,
+        labelStyle: { fontSize: 12, fontWeight: "bold" },
+      }}
+    >
       <BottomTab.Screen
-        name="TabOne"
+        name="Explore"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <EvilIcons name="location" size={32} color="black" />
+          ),
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Donate"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="map-o" size={24} color="black" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Profile"
+        component={TabThreeNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="people-outline" size={24} color="black" />
+          ),
         }}
       />
     </BottomTab.Navigator>
@@ -49,11 +77,7 @@ const TabOneStack = createStackNavigator<TabOneParamList>();
 function TabOneNavigator() {
   return (
     <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
-      />
+      <TabOneStack.Screen name="ExploreScreen" component={TabOneScreen} />
     </TabOneStack.Navigator>
   );
 }
@@ -63,11 +87,17 @@ const TabTwoStack = createStackNavigator<TabTwoParamList>();
 function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
-      />
+      <TabTwoStack.Screen name="DonateScreen" component={TabTwoScreen} />
     </TabTwoStack.Navigator>
+  );
+}
+
+const TabThreeStack = createStackNavigator<TabThreeParamList>();
+
+function TabThreeNavigator() {
+  return (
+    <TabThreeStack.Navigator>
+      <TabThreeStack.Screen name="ProfileScreen" component={TabThreeScreen} />
+    </TabThreeStack.Navigator>
   );
 }
