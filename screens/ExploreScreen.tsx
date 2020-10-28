@@ -5,6 +5,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import ProfilePicture from "../components/ProfilePicture";
 import Toggle from "../components/Toggle";
 import Feed from "../components/Feed";
+import NewPostButton from "../components/newPostButton";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 
@@ -77,6 +79,7 @@ export default function ExploreScreen() {
         </View>
       </View>
       <Feed />
+      <NewPostButton />
     </SafeAreaView>
   );
 }
