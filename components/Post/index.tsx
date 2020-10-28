@@ -20,11 +20,11 @@ const Post = ({ image, name, time, description }: PostParams) => {
           <Text style={{ marginLeft: 20, fontWeight: "bold" }}>{name}</Text>
         </View>
         <View>
-          <Text>3mins ago</Text>
+          <Text style={{ color: "grey" }}>3mins ago</Text>
         </View>
       </View>
       <View style={styles.description}>
-        <Text>{description}</Text>
+        <Text style={{ color: "grey" }}>{description}</Text>
       </View>
       <View style={styles.footer}>
         <TouchableOpacity>

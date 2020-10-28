@@ -2,11 +2,11 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   postContainer: {
-    width: "100%",
+    width: "93%",
     flexDirection: "column",
     //backgroundColor: "grey",
-    paddingHorizontal: 10,
-    marginHorizontal: 4,
+    paddingHorizontal: 0,
+    marginHorizontal: 13,
   },
   userInfo: {
     flexDirection: "row",
@@ -20,14 +20,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  description: { width: "100%", marginLeft: 4 },
+  description: { width: "100%", marginLeft: 4, marginTop: 10 },
   footer: {
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
+    marginTop: 5,
+    paddingHorizontal: 5,
   },
   actionBtn: {},
-  actionBtnTxt: {},
+  actionBtnTxt: { color: "#1874E9" },
 });
 
 export default styles;
