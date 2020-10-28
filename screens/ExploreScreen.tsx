@@ -4,13 +4,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import ProfilePicture from "../components/ProfilePicture";
 import Toggle from "../components/Toggle";
-import Post from "../components/Post";
-
+import Feed from "../components/Feed";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 import users from "../data/users";
-import posts from "../data/posts";
 
 export default function ExploreScreen() {
   const [view, toggleView] = useState("list");
@@ -78,11 +76,7 @@ export default function ExploreScreen() {
           <Text style={styles.resourceLabel}>Medicine</Text>
         </View>
       </View>
-      <Post
-        image={users[0].profilePic}
-        description={posts[0].desc}
-        name={users[0].name}
-      />
+      <Feed />
     </SafeAreaView>
   );
 }

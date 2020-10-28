@@ -6,7 +6,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     //backgroundColor: "grey",
     paddingHorizontal: 0,
+    paddingVertical: 3,
     marginHorizontal: 13,
+    marginBottom: 18,
+    borderBottomWidth: 0.2,
+    borderBottomColor: "lightgrey",
   },
   userInfo: {
     flexDirection: "row",
