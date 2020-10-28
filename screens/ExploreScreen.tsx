@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -6,16 +6,19 @@ import ProfilePicture from "../components/ProfilePicture";
 import Toggle from "../components/Toggle";
 import Feed from "../components/Feed";
 import NewPostButton from "../components/newPostButton";
-
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
+import ResourceToggle from "../components/resourceToggle";
 
 import users from "../data/users";
+import posts from "../data/posts";
 
 export default function ExploreScreen() {
   const [view, toggleView] = useState("list");
   const [role, setRole] = useState<string | number>("donor");
   const [noOfDonors, setDonors] = useState<number>(3);
+
+  useEffect(() => {
+    setDonors(posts.length);
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
@@ -51,33 +54,7 @@ export default function ExploreScreen() {
 
         <Text style={styles.noOfDonors}>{noOfDonors} People offer to help</Text>
       </View>
-      <View style={styles.resourceToggle}>
-        <View style={styles.resourceItemActive}>
-          <MaterialCommunityIcons
-            name="water-outline"
-            size={30}
-            color="#1874e9"
-          />
-          <Text style={styles.resourceLabelActive}>Water</Text>
-        </View>
-        <View style={styles.resourceItem}>
-          <MaterialCommunityIcons name="food" size={30} color="#C4C4C4" />
-
-          <Text style={styles.resourceLabel}>Food</Text>
-        </View>
-        <View style={styles.resourceItem}>
-          <FontAwesome5 name="bed" size={30} color="#C4C4C4" />
-          <Text style={styles.resourceLabel}>Shelter</Text>
-        </View>
-        <View style={styles.resourceItem}>
-          <MaterialCommunityIcons
-            name="hospital-box"
-            size={30}
-            color="#C4C4C4"
-          />
-          <Text style={styles.resourceLabel}>Medicine</Text>
-        </View>
-      </View>
+      <ResourceToggle />
       <Feed />
       <NewPostButton />
     </SafeAreaView>
@@ -188,54 +165,5 @@ const styles = StyleSheet.create({
   },
   noOfDonors: {
     color: "#1874E9",
-  },
-  resourceToggle: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    // backgroundColor: "red",
-    marginTop: 28,
-    paddingHorizontal: 35,
-  },
-  resourceItem: {
-    alignItems: "center",
-    justifyContent: "flex-end",
-    height: 62,
-    width: 62,
-    paddingVertical: 3,
-    paddingHorizontal: 2,
-    // backgroundColor: "red",
-    flexDirection: "column",
-    borderRadius: 8,
-    shadowColor: "#C4C4C4",
-  },
-  resourceItemActive: {
-    alignItems: "center",
-    justifyContent: "flex-end",
-    height: 62,
-    width: 62,
-    paddingVertical: 3,
-    paddingHorizontal: 2,
-    // backgroundColor: "red",
-    flexDirection: "column",
-    shadowColor: "#C4C4C4",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
-
-    elevation: 8,
-  },
-  resourceLabel: {
-    fontSize: 10,
-    marginTop: 10,
-    color: "#C4C4C4",
-  },
-  resourceLabelActive: {
-    fontSize: 10,
-    marginTop: 10,
-    color: "black",
   },
 });
